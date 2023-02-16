@@ -44,11 +44,6 @@ streamlit.text("Hello from snowflake: ")
 streamlit.text(my_data_row)
 
 
-#create the repeatable code block (called function)
-def get_fruityvice_date(this_fruit_choice):
-  fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + this_fruit_choice)
-  fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
-  return fruityvice_normalized
 
 #New section to display fruityvice api response
 streamlit.header('Fruityvice fruit Advice!')
@@ -57,5 +52,7 @@ try:
   if not frui_choice:
     streamlit.error("Please select a fruit to get information")
   else:
-    back_from_function = get_fruityvice_data(fruit_choice)
-    streamlit.dataframe(back_from_function)
+    fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + this_fruit_choice)
+    fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
+    streamlit.dataframe(fruityvice_normalized)
+except URLError as e:
