@@ -43,6 +43,9 @@ my_data_rows = my_cur.fetchall()
 streamlit.text("Fruit list: ")
 streamlit.text(my_data_rows)
 
+streammlit.write('Thanks for adding ', add_my_fruit)
+
+my_cur.execute("insert into fruit_load_list values ('from streamlit')")
 #create the repeatable code block (called a function)
 #def get_fruityvice_data(this_fruit_choice):
 #  fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
